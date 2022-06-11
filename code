@@ -1,0 +1,75 @@
+def introduction():
+    return 'Enter your move: (r)ock (p)aper (s)cissors or (q)uit'
+
+
+def human(move):
+    if move == 'r':
+        return 'ROCK versus...'
+    elif move == 'p':
+        return 'PAPER versus...'
+    elif move == 's':
+        return 'SCISSOR versus...'
+    else:
+        return 'Input r, p, s, or q only.'
+
+
+def computer():
+    from random import choice
+    choices = ['r', 'p', 's']
+    comp_move = choice(choices)
+    if comp_move == 'r':
+        return 'ROCK'
+    elif comp_move == 'p':
+        return 'PAPER'
+    else:
+        return 'SCISSOR'
+
+
+def main():
+    print('ROCK, PAPER, SCISSORS\n0 Wins, 0 Losses, 0 Ties')
+    intro = introduction()
+    wins, losses, ties = 0, 0, 0
+    end = False
+
+    while not end:
+        print(intro)
+        valid = ['q', 'r', 's', 'p']
+
+        move = input('> ').lower()
+        if move == 'q':
+            break
+        elif move not in valid:
+            break
+
+        human_move = human(move)
+        computer_move = computer()
+        print(f'{human_move}\n{computer_move}')
+
+        if move == computer_move[0].lower():
+            ties += 1
+            print(f'It is a Tie!\n{wins} Wins, {losses} Losses, {ties} Ties')
+        elif move == 'r':
+            if computer_move == 'PAPER':
+                losses += 1
+                print(f'Computer Win\n{wins} Wins, {losses} Losses, {ties} Ties')
+            else:
+                wins += 1
+                print(f'You Win\n{wins} Wins, {losses} Losses, {ties} Ties')
+        elif move == 'p':
+            if computer_move == 'SCISSOR':
+                losses += 1
+                print(f'Computer Win\n{wins} Wins, {losses} Losses, {ties} Ties')
+            else:
+                wins += 1
+                print(f'You Win\n{wins} Wins, {losses} Losses, {ties} Ties')
+        else:
+            if computer_move == 'ROCK':
+                losses += 1
+                print(f'Computer Win\n{wins} Wins, {losses} Losses, {ties} Ties')
+            else:
+                wins += 1
+                print(f'You Win\n{wins} Wins, {losses} Losses, {ties} Ties')
+
+
+if __name__ == '__main__':
+    main()
